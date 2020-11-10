@@ -1,23 +1,10 @@
-html {
-  background: #F3EFEE;
+
+html, body{
   margin: 0;
   padding: 0;
-  text-align: center;
 }
-body {
-  margin: 100px auto 0 auto;
-  width: 80%;
-  text-align: center;
-  font-family: cursive;
-  padding: 0;
-}
-
 canvas {
-  margin: auto;
-  top:0;
-  left:0;
-  position: absolute;
-  z-index: -1;
+  margin: 100px auto;
   display: block;
-  border: 10px solid black;
+  
 }
