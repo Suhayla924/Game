@@ -31,15 +31,6 @@ function draw(){
   }
 }
 
-//if(state === 'title'){
-//  title();
-//  cnv.mouseClicked(titleMouseClicked);
-//  } else if (state === 'level 1' && points > 50){
-//    level1();
-//    cnv.mouseClicked(level1MouseClicked)
-//  }
-//}
-
 function title(){
   background(137,252,182);
   textSize(60);
