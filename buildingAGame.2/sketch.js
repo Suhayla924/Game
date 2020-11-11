@@ -14,8 +14,8 @@ function setup() {
   textFont('Arial Black');
 
   player = new Player();
-  coins[0] = new coins();
-  coins.push(new coins());
+//  coins[0] = new coins();
+  coins[0].push(new Coin());
 
 }
 
@@ -71,17 +71,23 @@ function titleMouseClicked() {
 
 function level1() {
   background(87, 251, 234);
-  text('tap-tap-tap!', w / 2, h / 2);
+  //text('tap-tap-tap!', w / 2, h / 2);
+  if (random(1) <= 0.01){
+    coins.push(new Coin());
+  }
 
   player.display();
   player.move();
+  for( let i =0; i < coins.length; i++){
+    coins[i].display();
+    coins[i].move();
+  }
 
-  coins.display();
-  coins.move();
+
 
   //check for collsion, if there is a collsion increase points by 1
 
-  if (dist(player.x, player.y, coins.x, coins.y) <= (player.r + coins.r) / 2) {
+  if (dist(player.x, player.y, coins[0].x, coins[0].y) <= (player.r + coins[0].r) / 2) {
     points++;
     console.log(points);
   }
