@@ -12,7 +12,7 @@ let coinImg;
 
 function preload(){
   playerImg = loadImage("assets/turtle.png");
-  playerImg = loadImage("assets/64x64/turtle.png");
+  playerImg = loadImage("assets/64x64/seaweed.png");
 }
 
 function setup() {
