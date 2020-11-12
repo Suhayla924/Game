@@ -89,10 +89,10 @@ function level1() {
   //iteration throught coins array to display and move items
 
   //using for loop
-  for (let i = 0; i < coins.length; i++) {
-     coins[i].display();
-     coins[i].move();
-    }
+  //for (let i = 0; i < coins.length; i++) {
+  //  coins[i].display();
+  //    coins[i].move();
+  //  }
 
   //using forEach loop; can use index
   //coins.forEach(function(coin){
@@ -101,10 +101,10 @@ function level1() {
   //  })
 
   //using a for of loop, but no acess to index in this loop
-  // for (let coin of coins) {
-  //   coin.display();
-  //   coin.move();
-  // }
+  for (let coin of coins) {
+    coin.display();
+    coin.move();
+  }
 
 
   //check for collsion, if there is a collsion increase points by 1 and splice that coin out of the array
@@ -115,10 +115,8 @@ function level1() {
   for (let i = coins.length - 1; i >= 0; i--)
     if (dist(player.x, player.y, coins[i].x, coins[i].y) <= (player.r + coins[i].r) / 2) {
       points++;
+      console.log(points);
       coins.splice(i, 1);
-    } else if (coins[i].y > h){
-      coins.splice(i, 1);
-      console.log('coin is out of town');
     }
 
   text(`points: ${points}`, w / 6, h - 30);
