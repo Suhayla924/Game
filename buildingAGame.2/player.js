@@ -24,17 +24,21 @@ class Player {
         break;
       case 'down':
         //increase y position
-        if(this.y < h - this.r){
+        if (this.y < h - this.r){
           this.y +=this.speed; 
         }
         break;
           case 'right':
-        //decrease x position
-        this.x += this.speed;
+          //decrease x position
+          if (this.x < w - this.r){
+            this.x += this.speed;
+          }
         break;
       case 'left':
-        //increase x pos
+       //increase x pos
+      if (this.x > 0){
         this.x -= this.speed;
+      }
         break;
       }
     
