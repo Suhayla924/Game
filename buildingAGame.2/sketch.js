@@ -10,7 +10,7 @@ let coins = [];
 let playerImg;
 
 function preload(){
-  playerImg = loadImage('assets/ki.jpg')
+  playerImg = loadImage("assets/ki.jpg")
 }
 
 function setup() {
