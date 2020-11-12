@@ -9,7 +9,7 @@ class Player {
 
   display() {
     // rect(this.x, this.y, this.r, this.r);
-    image(playerImg.x, playerImg.y, playerImg.r, playerImg.r);
+    image(playerImg, this.x, this.y, this.r, this.r);
   }
   move() {
     switch (this.direction) {
