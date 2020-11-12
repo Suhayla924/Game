@@ -8,9 +8,11 @@ let h = 600;
 let player;
 let coins = [];
 let playerImg;
+let coinImg;
 
 function preload(){
-  playerImg = loadImage("assets/ki.jpg")
+  playerImg = loadImage("assets/turtle.png");
+  playerImg = loadImage("assets/64x64/turtle.png");
 }
 
 function setup() {
