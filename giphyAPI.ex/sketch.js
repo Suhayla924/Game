@@ -1,5 +1,5 @@
 //URL TO THE WEBSITE SOURCE
-var api = "http://api.giphy.com/v1/gifs/search?";
+var api = "https://api.giphy.com/v1/gifs/search?";
 //API KEY
 var apiKey = "&api_key=52tlMRCdN7XQATp7lkSZRZII53GQotCh";
 //TAG WE ARE LOOKING FOR IN THE URL
