@@ -4,7 +4,7 @@ class Player {
     this.x = this.r;
     this.y = height - this.r;
     this.vy = 0;
-    this.gravity = 1;
+    this.gravity = 2;
   }
 
   jump() {
