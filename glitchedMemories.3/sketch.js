@@ -23,8 +23,8 @@ function keyPressed() {
 
 function draw() {
   background(bgImg);
-  
-  player.show();
+
+  player.display();
   player.move();
 
 
