@@ -10,7 +10,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(800, 450);
+  createCanvas(800, 800);
   player = new Player();
 
 }
