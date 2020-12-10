@@ -16,8 +16,8 @@ class Player {
     this.j += this.gravity;
     this.y = constrain(this.y, 0, height - this.r);
   }
-  
-  show() {
+
+  display() {
     image(playerImg, this.x, this.y, this.r, this.r);
   }
 
