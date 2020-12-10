@@ -10,7 +10,7 @@ let coins = [];
 let playerImg;
 let coinImg;
 
-function preload(){
+function preload() {
   playerImg = loadImage("assets/turtle.png");
   coinImg = loadImage("assets/seaweed.png");
 }
