@@ -12,6 +12,7 @@ let playerImg;
 let coinImg;
 let flopyImg;
 let numberKeysPressed = 0;
+let glitch;
 
 function preload() {
   playerImg = loadImage("assets/player.png");
@@ -22,16 +23,20 @@ function preload() {
 function setup() {
   cnv = createCanvas(w, h);
   frameRate(40);
-
   imageMode(CENTER);
-rectMode(CENTER);
+  rectMode(CENTER);
 
-textFont('Arial Black');
+  textFont('Arial Black');
 
   player = new Player();
   //  coins[0] = new coins();
   coins.push(new Coin());
   flopydisks.push(new Flopydisk());
+
+  glitch = newGltich();
+  loadImage('bench.png', function(im){
+    glitch.loadImage(im);
+  });
 
 }
 
@@ -61,6 +66,16 @@ function draw() {
     default:
       break;
   }
+
+
+  glitch.resetBytes();
+
+	glitch.replaceBytes(190, 15); // swap all decimal byte 100 for 104
+	glitch.randomBytes(100); // add one random byte for movement
+
+	glitch.buildImage();
+	image(glitch.image, 0, 0)
+
 }
 
 
