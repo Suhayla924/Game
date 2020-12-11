@@ -4,7 +4,7 @@ let state = 'title';
 let cnv;
 let points = 0;
 let w = 850;
-let h = 750;
+let h = 650;
 let player;
 let coins = [];
 let playerImg;
@@ -32,6 +32,10 @@ function draw() {
       title();
       cnv.mouseClicked(titleMouseClicked);
       break;
+    case 'intro':
+      intro();
+      cnv.mouseClicked(introMouseClicked);
+      break;
     case 'level 1':
       level1();
       cnv.mouseClicked(level1MouseClicked);
@@ -58,7 +62,6 @@ function keyPressed() {
     player.direction = 'still';
   }
 }
-///spacebar is ''
 
 
 function title() {
@@ -72,6 +75,22 @@ function title() {
 }
 
 function titleMouseClicked() {
+  console.log('canvas is clicked on title page');
+  state = 'intro'
+}
+
+function intro() {
+  background(137, 252, 182);
+  textSize(60);
+  textAlign(CENTER);
+  fill(14, 17, 44);
+  text('Intro', w / 2, h / 5);
+  textSize(25);
+  text('click anywhere to begin', w / 2, h / 2);
+}
+
+
+function introMouseClicked() {
   console.log('canvas is clicked on title page');
   state = 'level 1'
 }
@@ -90,9 +109,9 @@ function level1() {
 
   //using for loop
   for (let i = 0; i < coins.length; i++) {
-     coins[i].display();
-     coins[i].move();
-    }
+    coins[i].display();
+    coins[i].move();
+  }
 
   //using forEach loop; can use index
   //coins.forEach(function(coin){
@@ -114,10 +133,10 @@ function level1() {
     if (dist(player.x, player.y, coins[i].x, coins[i].y) <= (player.r + coins[i].r) / 2) {
       points++;
       coins.splice(i, 1);
-    } else if (coins[i].y > h){
-      coins.splice(i, 1);
-      console.log('coin is out of town');
-    }
+    } else if (coins[i].y > h) {
+    coins.splice(i, 1);
+    console.log('coin is out of town');
+  }
 
   text(`points: ${points}`, w / 6, h - 30);
 }
