@@ -20,7 +20,4 @@ class Player {
   display() {
     image(playerImg, this.x, this.y, this.r, this.r);
   }
-
-
-
 }

@@ -6,13 +6,13 @@ let points = 0;
 let w = 600;
 let h = 600;
 let player;
-let coins = [];
+let hourglasss = [];
 let playerImg;
-let coinImg;
+let hourglassImg;
 
 function preload() {
   playerImg = loadImage("assets/turtle.png");
-  coinImg = loadImage("assets/seaweed.png");
+  hourglassImg = loadImage("assets/seaweed.png");
 }
 
 function setup() {
@@ -21,8 +21,8 @@ function setup() {
   textFont('Arial Black');
 
   player = new Player();
-  //  coins[0] = new coins();
-  coins.push(new Coin());
+  //  hourglasss[0] = new hourglasss();
+  hourglasss.push(new hourglass());
 
 }
 
@@ -80,43 +80,43 @@ function level1() {
   background(87, 251, 234);
   //text('tap-tap-tap!', w / 2, h / 2);
   if (random(1) <= 0.01) {
-    coins.push(new Coin());
+    hourglasss.push(new hourglass());
   }
 
   player.display();
   player.move();
 
-  //iteration throught coins array to display and move items
+  //iteration throught hourglasss array to display and move items
 
   //using for loop
-  for (let i = 0; i < coins.length; i++) {
-     coins[i].display();
-     coins[i].move();
+  for (let i = 0; i < hourglasss.length; i++) {
+     hourglasss[i].display();
+     hourglasss[i].move();
     }
 
   //using forEach loop; can use index
-  //coins.forEach(function(coin){
-  //coin.display();
-  //  coin.move();
+  //hourglasss.forEach(function(hourglass){
+  //hourglass.display();
+  //  hourglass.move();
   //  })
 
   //using a for of loop, but no acess to index in this loop
-  // for (let coin of coins) {
-  //   coin.display();
-  //   coin.move();
+  // for (let hourglass of hourglasss) {
+  //   hourglass.display();
+  //   hourglass.move();
   // }
 
 
-  //check for collsion, if there is a collsion increase points by 1 and splice that coin out of the array
+  //check for collsion, if there is a collsion increase points by 1 and splice that hourglass out of the array
   // need to iterate backward through the array
 
-  for (let i = coins.length - 1; i >= 0; i--)
-    if (dist(player.x, player.y, coins[i].x, coins[i].y) <= (player.r + coins[i].r) / 2) {
+  for (let i = hourglasss.length - 1; i >= 0; i--)
+    if (dist(player.x, player.y, hourglasss[i].x, hourglasss[i].y) <= (player.r + hourglasss[i].r) / 2) {
       points++;
-      coins.splice(i, 1);
-    } else if (coins[i].y > h){
-      coins.splice(i, 1);
-      console.log('coin is out of town');
+      hourglasss.splice(i, 1);
+    } else if (hourglasss[i].y > h){
+      hourglasss.splice(i, 1);
+      console.log('hourglass is out of town');
     }
 
   text(`points: ${points}`, w / 6, h - 30);

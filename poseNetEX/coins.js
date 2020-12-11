@@ -1,4 +1,4 @@
-class Coin{
+class hourglass{
   constructor() {
     this.r = 50;
     this.x = random(w);
