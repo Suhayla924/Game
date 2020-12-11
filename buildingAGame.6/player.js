@@ -4,7 +4,7 @@ class Player {
     this.x = w / 2;
     this.y = h - this.r;
     this.j = 0;
-    this.speed = 2;
+    this.speed = 9;
     this.direction = 'still';
     this.gravity =2;
   }

@@ -4,7 +4,7 @@ let state = 'title';
 let cnv;
 let points = 0;
 let w = 800;
-let h = 500;
+let h = 550;
 let player;
 let coins = [];
 let flopydisks = [];
