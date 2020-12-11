@@ -1,10 +1,40 @@
-
-html, body{
+html {
   margin: 0;
   padding: 0;
+  text-align: center;
 }
-canvas {
-  margin: 100px auto;
-  display: block;
+body {
+  background-color:	#B2B2B1;
+  margin: 100px auto 0 auto;
+  width: 80%;
+  text-align: center;
+  font-family: 'Courier New', monospace;
+  padding: 0;
+}
+h1{
+  font-size: 55px;
+  font: 'Courier New';
+  padding: 15px;
+  text-align: left;
+}
 
+p{
+  font: 'Courier New';
+  background-color: black;
+  color: white;
+  border:groove 5px;
+  border-color: cyan;
+  margin: 10px 90px 10px 90px;
+  padding: 15px;
+}
+
+canvas {
+  margin: auto;
+  top:15px;
+  left:15px;
+  bottom:15px;
+  position: center;
+  display: block;
+  border-color:;
+  border: 10px solid cyan;
 }

@@ -19,7 +19,7 @@ function preload() {
   playerImg = loadImage("assets/player.png");
   coinImg = loadImage("assets/hourglass.png");
   flopyImg = loadImage("assets/flopydisk.png");
-  bgImg = loadImage("assets/bench.png");
+  bgImg = loadImage("assets/bench2.png");
 
   player = new Player();
   //  coins[0] = new coins();
@@ -31,13 +31,13 @@ function preload() {
     glitch.loadImage(im);
   });
 
-    image(glitch.image, 200, 200)
-    glitch.resetBytes();
+  image(glitch.image, 200, 200)
+  glitch.resetBytes();
 
-    glitch.replaceBytes(190, 15); // swap all decimal byte 100 for 104
-    glitch.randomBytes(100); // add one random byte for movement
+  glitch.replaceBytes(190, 15); // swap all decimal byte 100 for 104
+  glitch.randomBytes(100); // add one random byte for movement
 
-    glitch.buildImage();
+  glitch.buildImage();
 }
 
 function setup() {
@@ -45,7 +45,8 @@ function setup() {
   frameRate(40);
   imageMode(CENTER);
   rectMode(CENTER);
-  textFont('Arial Black');
+  textFont('Courier New');
+  text(color(255));
 }
 
 
@@ -66,10 +67,6 @@ function draw() {
     case 'level 1':
       level1();
       cnv.mouseClicked(level1MouseClicked);
-      break;
-    case 'you win':
-      youWin();
-      cnv.mouseClicked(youWinMouseClicked);
       break;
     default:
       break;
@@ -113,7 +110,7 @@ function title() {
   textSize(60);
   textAlign(CENTER);
   fill(14, 17, 44);
-  text('CLICKING GAME', w / 2, h / 5);
+  text('GLITCHED MEMORIES', w / 2, h / 5);
   textSize(25);
   text('click anywhere to begin', w / 2, h / 2);
 }
@@ -123,43 +120,28 @@ function titleMouseClicked() {
   state = 'intro'
 }
 
-
-
 function intro() {
-  background(0);
-  textSize(60);
+  background(255);
   textAlign(CENTER);
   fill(14, 17, 44);
-  text('Intro', w / 2, h / 5);
+  textSize(35);
+  text('Read the descriptions for details.', w / 2, h / 2);
   textSize(25);
-  text('click anywhere to begin', w / 2, h / 2);
+  text('click anywhere to begin', w / 2, h / 1.5);
 }
 
 function introMouseClicked() {
   console.log('canvas is clicked on title page');
-  state = 'story'
-}
-
-
-function story() {
-  background(137, 252, 182);
-  textSize(60);
-  textAlign(CENTER);
-  fill(14, 17, 44);
-  text('STORY', w / 2, h / 5);
-  textSize(25);
-  text('click anywhere to begin', w / 2, h / 2);
-}
-
-function storyMouseClicked() {
-  console.log('canvas is clicked on title page');
   state = 'level 1'
 }
 
-
-
 function level1() {
-background('bgImg');
+  frameRate(40);
+  image(glitch.image, 450, 350);
+  //glitch.resetBytes();
+  //glitch.replaceBytes(3, 15); // swap all decimal byte 100 for 104
+  //glitch.randomBytes(10); // add one random byte for movement
+  //glitch.buildImage();
   if (random(1) <= 0.06) {
     coins.push(new Coin());
   }
@@ -198,18 +180,177 @@ background('bgImg');
     } else if (flopydisks[i].y > h) {
     flopydisks.splice(i, 1);
   }
+  textSize(20, color(255, 255, 255));
+  text(`time: ${points}`, w / 2, h / 6);
 
-  text(`points: ${points}`, w / 6, h - 30);
 
-  if (points >= 10) {
+  if (points >= 20) {
+    level2();
+  }
+}
 
-      image(glitch.image, 300, 300)
-      glitch.resetBytes();
-      glitch.replaceBytes(190, 15); // swap all decimal byte 100 for 104
-      glitch.randomBytes(100); // add one random byte for movement
-      glitch.buildImage();
+function level2() {
+  frameRate(80);
+
+  image(glitch.image, 300, 300)
+  glitch.resetBytes();
+
+	glitch.replaceBytes(100, 104); // swap all decimal byte 100 for 104
+	glitch.randomBytes(1); // add one random byte for movement
+
+  if (random(1) <= 0.06) {
+    coins.push(new Coin());
   }
 
+  if (random(1) <= 0.02) {
+    flopydisks.push(new Flopydisk());
+  }
+
+  player.display();
+  player.move();
+
+  for (let i = 0; i < coins.length; i++) {
+    coins[i].display();
+    coins[i].move();
+  }
+
+  for (let i = 0; i < flopydisks.length; i++) {
+    flopydisks[i].display();
+    flopydisks[i].move();
+  }
+
+
+  for (let i = coins.length - 1; i >= 0; i--)
+    if (dist(player.x, player.y, coins[i].x, coins[i].y) <= (player.r + coins[i].r) / 2) {
+      points++;
+      coins.splice(i, 1);
+    } else if (coins[i].y > h) {
+    coins.splice(i, 1);
+    //console.log('coin is out of town');
+  }
+
+  for (let i = flopydisks.length - 1; i >= 0; i--)
+    if (dist(player.x, player.y, flopydisks[i].x, flopydisks[i].y) <= (player.r + flopydisks[i].r) / 2) {
+      points--;
+      flopydisks.splice(i, 1);
+    } else if (flopydisks[i].y > h) {
+    flopydisks.splice(i, 1);
+  }
+  textSize(20, color(255, 255, 255));
+    text(`time: ${points}`, w / 2, h / 6);
+
+  if (points >= 25) {
+    level3();
+  }
+}
+
+function level3() {
+  frameRate(80);
+
+  image(glitch.image, 300, 300)
+  glitch.resetBytes();
+  //glitch.replaceBytes(3, 15); // swap all decimal byte 100 for 104
+  glitch.randomBytes(5); // add one random byte for movement
+  glitch.buildImage();
+
+  if (random(1) <= 0.06) {
+    coins.push(new Coin());
+  }
+
+  if (random(1) <= 0.02) {
+    flopydisks.push(new Flopydisk());
+  }
+
+  player.display();
+  player.move();
+
+  for (let i = 0; i < coins.length; i++) {
+    coins[i].display();
+    coins[i].move();
+  }
+
+  for (let i = 0; i < flopydisks.length; i++) {
+    flopydisks[i].display();
+    flopydisks[i].move();
+  }
+
+
+  for (let i = coins.length - 1; i >= 0; i--)
+    if (dist(player.x, player.y, coins[i].x, coins[i].y) <= (player.r + coins[i].r) / 2) {
+      points++;
+      coins.splice(i, 1);
+    } else if (coins[i].y > h) {
+    coins.splice(i, 1);
+    //console.log('coin is out of town');
+  }
+
+  for (let i = flopydisks.length - 1; i >= 0; i--)
+    if (dist(player.x, player.y, flopydisks[i].x, flopydisks[i].y) <= (player.r + flopydisks[i].r) / 2) {
+      points--;
+      flopydisks.splice(i, 1);
+    } else if (flopydisks[i].y > h) {
+    flopydisks.splice(i, 1);
+  }
+  textSize(20, color(255, 255, 255));
+    text(`time: ${points}`, w / 2, h / 6);
+
+  if (points >= 3) {
+    level4();
+  }
+}
+
+function level4() {
+  frameRate(80);
+
+  image(glitch.image, 300, 300)
+  glitch.resetBytes();
+  glitch.replaceBytes(40, 15); // swap all decimal byte 100 for 104
+  glitch.randomBytes(170); // add one random byte for movement
+  glitch.buildImage();
+
+  if (random(1) <= 0.06) {
+    coins.push(new Coin());
+  }
+
+  if (random(1) <= 0.02) {
+    flopydisks.push(new Flopydisk());
+  }
+
+  player.display();
+  player.move();
+
+  for (let i = 0; i < coins.length; i++) {
+    coins[i].display();
+    coins[i].move();
+  }
+
+  for (let i = 0; i < flopydisks.length; i++) {
+    flopydisks[i].display();
+    flopydisks[i].move();
+  }
+
+
+  for (let i = coins.length - 1; i >= 0; i--)
+    if (dist(player.x, player.y, coins[i].x, coins[i].y) <= (player.r + coins[i].r) / 2) {
+      points++;
+      coins.splice(i, 1);
+    } else if (coins[i].y > h) {
+    coins.splice(i, 1);
+    //console.log('coin is out of town');
+  }
+
+  for (let i = flopydisks.length - 1; i >= 0; i--)
+    if (dist(player.x, player.y, flopydisks[i].x, flopydisks[i].y) <= (player.r + flopydisks[i].r) / 2) {
+      points--;
+      flopydisks.splice(i, 1);
+    } else if (flopydisks[i].y > h) {
+    flopydisks.splice(i, 1);
+  }
+  textSize(20, color(255, 255, 255));
+    text(`time: ${points}`, w / 2, h / 6);
+  if (points >= 45) {
+    level4();
+  }
 }
 
 function level1MouseClicked() {
@@ -219,20 +360,4 @@ function level1MouseClicked() {
   //  state = 'you win'
   //}
   //n:points = points += 1; short hand is --> points++;
-}
-
-
-function youWin() {
-  background(251, 87, 186);
-  textSize(80);
-  stroke(255);
-  text('YOU WIN', w / 2, h / 4);
-  textSize(30);
-  text('click anywhere to restart', w / 2, h / 2);
-
-}
-
-function youWinMouseClicked() {
-  state = 'title';
-  points = 0;
 }

@@ -7,6 +7,7 @@ class Player {
     this.speed = 9;
     this.direction = 'still';
     this.gravity =2;
+    frameRate(60);
   }
 
   display() {
